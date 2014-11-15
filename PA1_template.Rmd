@@ -33,7 +33,8 @@ median(totalStepsByDay)
 First we calculate the average number of steps taken per 5-minute interval (averaged across all days) using the tapply() function, then we make a time series plot of the resulting average values.
 ```{r}
 avgStepsByInterval = tapply(data$steps, data$interval, mean, na.rm = T)
-plot(x = names(avgStepsByInterval), y = avgStepsByInterval, type = 'l', main = 'Average Daily Steps by Interval', xlab = 'Time', ylab = 'Number of Steps')
+plot(x = names(avgStepsByInterval), y = avgStepsByInterval, type = 'l',main = 'Average Daily Steps by Interval',
+     xlab = 'Time', ylab = 'Number of Steps')
 ```
 
 #### Step 5: Output the 5-minute interval containing the maximum number of steps.
@@ -57,7 +58,8 @@ filledData[indices, 'steps'] = avgStepsByInterval[as.character(timelabels)]
 To visualize the filled-in data we construct a histogram similar to the one from Step 1 above but using the filled-in data instead:
 ```{r}
 totalStepsByDayFilled = tapply(filledData$steps, filledData$date, sum)
-hist(totalStepsByDayFilled, ylim = range(0, 25), breaks = 10, main = 'Total Steps by Day (Filled-in Data)', xlab = 'Number of Steps')
+hist(totalStepsByDayFilled, ylim = range(0, 25), breaks = 10, main = 'Total Steps by Day (Filled-in Data)',
+     xlab = 'Number of Steps')
 ```
 
 As an additional exercise, we now calculate and report the mean and median total number of steps taken per day using the filled-in dataset.
@@ -78,8 +80,12 @@ avgStepsByDaytype = tapply(filledData$steps, list(filledData$interval, filledDat
 
 We create a new data frame to hold the results for each type of day and then combine them into one summary data frame.
 ```{r}
-dfWeekday = data.frame(interval = as.numeric(rownames(avgStepsByDaytype)), steps = avgStepsByDaytype[, 'weekday'], type = factor('weekday', levels = c('weekday', 'weekend')))
-dfWeekend = data.frame(interval = as.numeric(rownames(avgStepsByDaytype)), steps = avgStepsByDaytype[, 'weekend'], type = factor('weekend', levels = c('weekday', 'weekend')))
+dfWeekday = data.frame(interval = as.numeric(rownames(avgStepsByDaytype)),
+                       steps = avgStepsByDaytype[, 'weekday'], type = factor('weekday',
+                                                                             levels = c('weekday', 'weekend')))
+dfWeekend = data.frame(interval = as.numeric(rownames(avgStepsByDaytype)),
+                       steps = avgStepsByDaytype[, 'weekend'], type = factor('weekend',
+                                                                             levels = c('weekday', 'weekend')))
 dfCombined = rbind(dfWeekday, dfWeekend)
 ```
 
