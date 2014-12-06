@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+## Reproducible Research: Peer Assessment 1
 
 This document contains code and markdown to perform a well-documented reproducible data analysis on a set of data from a personal activity monitoring device. The readme file contains additional details on this assignment and the data set. The steps in the data analysis, including R code and resulting output and charts, are described below.
 
